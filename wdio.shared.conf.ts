@@ -1,6 +1,6 @@
 import { PickleStep } from '@cucumber/messages';
 import type { Options } from '@wdio/types';
-import * as moment from 'moment';
+import moment from 'moment';
 import { generate } from 'multiple-cucumber-html-reporter';
 import * as dns from 'node:dns';
 import cucumberJson from 'wdio-cucumberjs-json-reporter';

@@ -20,6 +20,9 @@
     "module": "ESNext",
 		// "moduleResolution" tells TypeScript how to find files when you use import or require.
 		// When set to "node", TypeScript will mimic Node.js in deciding how to find your files
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    // "allowSyntheticDefaultImports" allows TypeScript to act like each module has a default export.
+    // This is useful when dealing with older modules that were not designed with ES2015 in mind
+    "allowSyntheticDefaultImports": true
   },
 }
