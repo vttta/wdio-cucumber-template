@@ -8,34 +8,50 @@ import {
 } from '../../env';
 import LoginPage from '../pages/login.page';
 
+const negativeChecks = {
+	invalid: 'invalid_value_000',
+	long: 'a'.repeat(256),
+	'special characters': `!@#$%^&*()_+-={}|[]\\:";<>?,./`,
+	numeric: '1234567890',
+	alphabetic: 'abcdefghijklmnopqrstuvwxyz',
+};
+
 When(
-	/^the user enters a "(valid|invalid|locked out|problem|performance glitch)" username$/,
-	async function (validity: string) {
+	/^the user enters a(?:n)? "(valid|invalid|locked out|problem|performance glitch)" username$/,
+	async function (usernameType: string) {
 		const usernameValues = {
 			valid: USERNAME,
 			'locked out': USERNAME_LOCKED,
 			problem: USERNAME_PROBLEM,
 			'performance glitch': USERNAME_GLITCH,
-			invalid: 'invalid_user_000',
+			...negativeChecks,
 		};
 
-		if (usernameValues[validity]) {
-			await LoginPage.usernameField.addValue(validity);
+		const username = usernameValues[usernameType];
+
+		if (!username) {
+			throw new Error(`The "${usernameType}" username is not defined!`);
 		}
+
+		await LoginPage.usernameField.addValue(username);
 	}
 );
 
 When(
-	/^the user enters a "(valid|invalid)" password$/,
-	async function (validity: string) {
+	/^the user enters a(?:n)? "(valid|invalid)" password$/,
+	async function (passwordType: string) {
 		const passwordValues = {
 			valid: PASSWORD,
-			invalid: 'invalid_password_000',
+			...negativeChecks,
 		};
 
-		if (passwordValues[validity]) {
-			await LoginPage.passwordField.addValue(validity);
+		const pass = passwordValues[passwordType];
+
+		if (!pass) {
+			throw new Error(`The "${passwordType}" password is not defined!`);
 		}
+
+		await LoginPage.passwordField.addValue(pass);
 	}
 );
 

@@ -1,15 +1,28 @@
 {
-	"compilerOptions": {
-		"types": [
-			"node",
-			"webdriverio/async",
-			"@wdio/cucumber-framework",
-			"expect-webdriverio",
-			"chai",
-			"jquery"
-		],
-		"target": "es2015",
-		"module": "commonjs",
-	},
-	"exclude": ["node_modules", "tmp"]
+	// "ts-node" is a helper to run TypeScript code directly, without first compiling it to JavaScript
+  "ts-node": {
+    // "esm" enables support for ES modules, a newer JavaScript module system that allows for static imports and exports
+    "esm": true,
+    // "experimentalSpecifierResolution" tells ts-node how to understand your import statements.
+		// When set to "node", it makes ts-node think like Node.js when figuring out what your imports mean
+    "experimentalSpecifierResolution": "node"
+  },
+  "compilerOptions": {
+    "types": [
+      "@wdio/cucumber-framework",
+      "@wdio/globals/types",
+      "chai",
+      "expect-webdriverio",
+      "jquery",
+      "node"
+    ],
+    "target": "es2015",
+    "module": "ESNext",
+		// "moduleResolution" tells TypeScript how to find files when you use import or require.
+		// When set to "node", TypeScript will mimic Node.js in deciding how to find your files
+    "moduleResolution": "node",
+    // "allowSyntheticDefaultImports" allows TypeScript to act like each module has a default export.
+    // This is useful when dealing with older modules that were not designed with ES2015 in mind
+    "allowSyntheticDefaultImports": true
+  },
 }

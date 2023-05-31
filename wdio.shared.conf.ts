@@ -1,17 +1,11 @@
 import { PickleStep } from '@cucumber/messages';
 import type { Options } from '@wdio/types';
-import * as moment from 'moment';
+import moment from 'moment';
 import { generate } from 'multiple-cucumber-html-reporter';
 import * as dns from 'node:dns';
-import * as path from 'path';
 import cucumberJson from 'wdio-cucumberjs-json-reporter';
 
 import { BASE_URL } from './env';
-
-// this is needed for cucumberOpts.require to work on windows
-function getAbsoluteGlob(relativeGlob: string): string {
-	return path.resolve(__dirname, relativeGlob).replace(/\\/g, '/');
-}
 
 export class ExtendedPickleStep extends PickleStep {
 	keyword: string;
@@ -33,7 +27,6 @@ export const config: Options.Testrunner = {
 		tsNodeOpts: {
 			transpileOnly: true,
 			project: 'tsconfig.json',
-			require: ['tsconfig-paths/register'],
 		},
 	},
 
@@ -53,9 +46,10 @@ export const config: Options.Testrunner = {
 	specFileRetriesDelay: 0,
 	specFileRetriesDeferred: false,
 	reporters: ['cucumberjs-json'],
+	specs: ['src/**/*.feature'],
 
 	cucumberOpts: {
-		require: [getAbsoluteGlob('./**/*.steps.ts')],
+		require: ['src/**/*.steps.ts'],
 		backtrace: false,
 		requireModule: [],
 		dryRun: false,

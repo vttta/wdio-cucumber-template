@@ -2,12 +2,7 @@ import { Given, Then, When } from '@wdio/cucumber-framework';
 import { pressKey } from '../support/actions';
 import { KeyboardActions } from '../support/enums';
 import { waitUntilPageLoads } from '../support/waiters';
-
-Given(/^the "(main)" page is opened$/, async function (pageName: string) {
-	if (pageName !== 'main') {
-	}
-	await waitUntilPageLoads();
-});
+import { ChainablePromiseElement } from 'webdriverio/build/types';
 
 When(
 	/^the user presses the "(.*)" key$/,
@@ -20,3 +15,29 @@ When(/^the user visits url "(.*)"$/, async function (url: string) {
 	await browser.url(url);
 	await waitUntilPageLoads();
 });
+
+Then(
+	/^the "(.*)" page is (not )?opened$/,
+	async function (pageName: string, notOpened: string | null) {
+		const selectors: Record<string, string | undefined> = {
+			shop: '.inventory_list',
+			cart: undefined,
+		};
+
+		if (!selectors[pageName]) {
+			throw new Error(
+				`The selector for the "${pageName}" page is not defined!`
+			);
+		}
+
+		await waitUntilPageLoads();
+
+		const pageElem: ChainablePromiseElement<WebdriverIO.Element> = $(
+			selectors[pageName]!
+		);
+
+		notOpened
+			? await expect(pageElem).not.toBeDisplayed()
+			: await expect(pageElem).toBeDisplayed();
+	}
+);

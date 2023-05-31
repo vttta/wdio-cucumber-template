@@ -1,9 +1,5 @@
 import { config } from './wdio.shared.conf';
-import { BASE_PORT, BASE_URL } from './env';
 
-config.specs = ['./src/features/**/*.feature'];
-config.baseUrl = BASE_URL;
-config.port = BASE_PORT;
 // config.maxInstances = 1;
 config.capabilities = [
 	{
@@ -30,4 +26,4 @@ config.capabilities = [
 config.cucumberOpts.tagExpression = 'not @wip and not @mobile';
 config.services = ['chromedriver', 'devtools'];
 
-exports.config = config;
+export { config };
