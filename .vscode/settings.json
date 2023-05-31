@@ -1,0 +1,4 @@
+{
+	"cucumberautocomplete.steps": "src/**/*.steps.ts",
+	"cucumberautocomplete.syncfeatures": "src/**/*.feature"
+}

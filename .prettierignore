@@ -1,0 +1,5 @@
+# Add files here to ignore them from prettier formatting
+
+.tmp
+node_modules
+package-lock.json

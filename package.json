@@ -1,0 +1,40 @@
+{
+	"name": "wdio-cucumber-template",
+	"version": "0.0.1",
+	"scripts": {
+		"clean": "rimraf .tmp",
+		"wdio:template:web": "npm run clean && cross-env TEST_APP=template PLATFORM=web wdio run wdio.web.conf.ts",
+		"wdio:template:web-debug": "npm run clean && cross-env TEST_APP=template PLATFORM=web wdio run wdio.web.conf.ts --cucumberOpts.tagExpression '@debug'",
+		"eslint": "node_modules/eslint/bin/eslint.js --fix . --ext .js --ext .ts"
+	},
+	"private": true,
+	"devDependencies": {
+		"@babel/core": "7.12.13",
+		"@babel/eslint-parser": "^7.17.0",
+		"@babel/preset-typescript": "7.12.13",
+		"@types/chai": "^4.3.1",
+		"@types/jquery": "^3.5.14",
+		"@typescript-eslint/eslint-plugin": "5.33.1",
+		"@typescript-eslint/parser": "5.33.1",
+		"@wdio/appium-service": "^7.19.5",
+		"@wdio/cli": "^7.19.7",
+		"@wdio/cucumber-framework": "^7.19.7",
+		"@wdio/devtools-service": "^7.20.6",
+		"@wdio/local-runner": "^7.19.7",
+		"@wdio/spec-reporter": "^7.19.7",
+		"appium": "^1.22.3",
+		"appium-doctor": "^1.16.1",
+		"chai": "^4.3.6",
+		"chromedriver": "^112.0.0",
+		"cross-env": "^7.0.3",
+		"eslint": "8.15.0",
+		"eslint-config-prettier": "8.1.0",
+		"eslint-plugin-wdio": "^7.19.4",
+		"multiple-cucumber-html-reporter": "^1.21.0",
+		"prettier": "2.6.2",
+		"ts-node": "^10.9.1",
+		"typescript": "^4.9.5",
+		"wdio-chromedriver-service": "7.2.8",
+		"wdio-cucumberjs-json-reporter": "^4.4.0"
+	}
+}
