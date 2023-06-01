@@ -2,9 +2,6 @@ name: Run wdio:web
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - gh-actions-1
 
 jobs:
   build:
