@@ -1,11 +1,11 @@
 {
 	"name": "wdio-cucumber-template",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"type": "module",
 	"scripts": {
 		"clean": "rimraf .tmp",
 		"wdio:web": "npm run clean && cross-env TEST_APP=template PLATFORM=web wdio run wdio.web.conf.ts",
-		"wdio:web-debug": "npm run clean && cross-env TEST_APP=template PLATFORM=web wdio run run wdio.web.debug.conf.ts --cucumberOpts.tagExpression '@debug'",
+		"wdio:web-debug": "npm run clean && cross-env TEST_APP=template PLATFORM=web wdio run wdio.debug.conf.ts --cucumberOpts.tagExpression '@debug'",
 		"eslint": "node_modules/eslint/bin/eslint.js --fix . --ext .js --ext .ts"
 	},
 	"private": true,

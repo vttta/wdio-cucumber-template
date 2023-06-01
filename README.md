@@ -94,9 +94,9 @@ What to expect:
 
 # VSCode reference
 
-- [How to toggle Auto Save in VS Code](https://www.kindacode.com/article/how-to-toggle-auto-save-in-vs-code/): Enable auto-save feature and always run the latest state of your tests.
-- [How to Format Code on Save in VS Code with ESlint](https://www.aleksandrhovhannisyan.com/blog/format-code-on-save-vs-code-eslint/): Understand how to use VS Code's auto-formatting capabilities to keep your code clean and consistent.
-- [Run NPM scripts in Visual Studio Code with a Single Click](http://www.matthiassommer.it/programming/testing/run-npm-scripts-in-visual-studio-code-with-a-click-of-a-button/): Discover how to run NPM scripts directly from VS Code's interface, making your workflow more efficient.
+- [How to toggle Auto Save](https://www.kindacode.com/article/how-to-toggle-auto-save-in-vs-code/): Enable auto-save feature and always run the latest state of your tests.
+- [How to Format Code on Save](https://www.aleksandrhovhannisyan.com/blog/format-code-on-save-vs-code-eslint/): Understand how to use VS Code's auto-formatting capabilities to keep your code clean and consistent.
+- [Run NPM scripts with a Single Click](http://www.matthiassommer.it/programming/testing/run-npm-scripts-in-visual-studio-code-with-a-click-of-a-button/): Discover how to run NPM scripts directly from VS Code's interface, making your workflow more efficient.
 
 - Speed up your workflow by becoming a master of keyboard shortcuts:
 

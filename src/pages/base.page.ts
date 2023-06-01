@@ -1,5 +1,1 @@
-export class BasePage {
-	get submitButton() {
-		return $('[data-testid*="submit-button"]');
-	}
-}
+export class BasePage {}
