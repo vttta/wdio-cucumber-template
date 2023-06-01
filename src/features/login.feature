@@ -19,7 +19,7 @@ Feature: Log in
 		Then an error is displayed
 		And the "shop" page is not opened
 
-	@wip
+	@wip @debug
 	Scenario: Login as a problem user
 		When the user enters a "problem" username
 		When the user enters a "valid" password
