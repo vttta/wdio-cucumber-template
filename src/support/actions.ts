@@ -1,18 +1,20 @@
 import { KeyboardActions } from './enums';
 import { Directions } from './types';
 
-export async function clickWithScroll(elem: WebdriverIO.Element) {
+export async function clickWithScroll(
+	elem: WebdriverIO.Element
+): Promise<void> {
 	await elem.scrollIntoView();
 	await elem.click();
 }
 
-export async function clickWithJS(elem: WebdriverIO.Element) {
+export async function clickWithJS(elem: WebdriverIO.Element): Promise<void> {
 	await browser.execute((el) => {
 		el.click();
 	}, elem);
 }
 
-export async function clickWithEvent(elem) {
+export async function clickWithEvent(elem): Promise<void> {
 	await browser.execute((el) => {
 		el.dispatchEvent(
 			new MouseEvent('click', { bubbles: true, cancelable: true })
@@ -20,17 +22,20 @@ export async function clickWithEvent(elem) {
 	}, elem);
 }
 
-export async function waitAndClick(elem: WebdriverIO.Element, timeout = 10000) {
+export async function waitAndClick(
+	elem: WebdriverIO.Element,
+	timeout = 10000
+): Promise<void> {
 	await elem.waitForDisplayed({ timeout });
 	await elem.waitForClickable();
 	await elem.click();
 }
 
-export async function pressKey(key: keyof KeyboardActions) {
+export async function pressKey(key: keyof KeyboardActions): Promise<void> {
 	await browser.keys(KeyboardActions[key]);
 }
 
-function getSwipeOffset(direction: Directions) {
+function getSwipeOffset(direction: Directions): { x: number; y: number } {
 	let [xOffset, yOffset] = [0, 0];
 	const offsetSize = 150;
 	switch (direction) {
@@ -53,7 +58,7 @@ function getSwipeOffset(direction: Directions) {
 export async function swipeByDragAndDrop(
 	direction: Directions,
 	element: WebdriverIO.Element
-) {
+): Promise<void> {
 	const offset = getSwipeOffset(direction);
 	await element.dragAndDrop({
 		x: offset.x,
@@ -61,7 +66,7 @@ export async function swipeByDragAndDrop(
 	});
 }
 
-export async function swipeByAction(direction: Directions) {
+export async function swipeByAction(direction: Directions): Promise<void> {
 	const offset = getSwipeOffset(direction);
 	await browser.performActions([
 		{

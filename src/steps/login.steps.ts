@@ -6,15 +6,15 @@ import {
 	USERNAME_GLITCH,
 	USERNAME_PROBLEM,
 } from '../../env';
-import LoginPage from '../pages/login.page';
+import loginPage from '../pages/login.page';
+import { waitUntilPageLoads } from '../support/waiters';
+import { negativeChecks } from '../testData';
 
-const negativeChecks = {
-	invalid: 'invalid_value_000',
-	long: 'a'.repeat(256),
-	'special characters': `!@#$%^&*()_+-={}|[]\\:";<>?,./`,
-	numeric: '1234567890',
-	alphabetic: 'abcdefghijklmnopqrstuvwxyz',
-};
+Given(/^the user is logged in$/, async function () {
+	await browser.url('');
+	await waitUntilPageLoads();
+	await loginPage.login(USERNAME, PASSWORD);
+});
 
 When(
 	/^the user enters a(?:n)? "(valid|invalid|locked out|problem|performance glitch)" username$/,
@@ -33,7 +33,7 @@ When(
 			throw new Error(`The "${usernameType}" username is not defined!`);
 		}
 
-		await LoginPage.usernameField.addValue(username);
+		await loginPage.usernameField.addValue(username);
 	}
 );
 
@@ -51,16 +51,10 @@ When(
 			throw new Error(`The "${passwordType}" password is not defined!`);
 		}
 
-		await LoginPage.passwordField.addValue(pass);
+		await loginPage.passwordField.addValue(pass);
 	}
 );
 
 When(/^the user clicks the "log in" button$/, async function () {
-	await LoginPage.loginButton.click();
-});
-
-When(/^the user logs in$/, async function () {
-	await LoginPage.usernameField.addValue(USERNAME);
-	await LoginPage.passwordField.addValue(PASSWORD);
-	await LoginPage.loginButton.click();
+	await loginPage.loginButton.click();
 });

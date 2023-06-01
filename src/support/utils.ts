@@ -15,12 +15,15 @@ export function getDateWithOffset({
 		.format('MM/DD/YYYY HH:mm')}`;
 }
 
-export async function getRelativeUrl() {
+export async function getRelativeUrl(): Promise<string> {
 	const fullUrl = new URL(await browser.getUrl());
 	return fullUrl.href.replace(fullUrl.origin, '');
 }
 
-export async function setLocalStorageItem(key: string, value: string) {
+export async function setLocalStorageItem(
+	key: string,
+	value: string
+): Promise<void> {
 	await browser.execute(
 		function (k, v) {
 			this.localStorage.setItem(k, v);
@@ -30,19 +33,19 @@ export async function setLocalStorageItem(key: string, value: string) {
 	);
 }
 
-export async function getLocalStorageItem(key: string) {
+export async function getLocalStorageItem(key: string): Promise<void> {
 	await browser.execute(function (k) {
 		this.localStorage.getItem(k);
 	}, key);
 }
 
-export async function removeLocalStorageItem(key: string) {
+export async function removeLocalStorageItem(key: string): Promise<void> {
 	await browser.execute(function (k) {
 		this.localStorage.removeItem(k);
 	}, key);
 }
 
-export function camelCase(str: string) {
+export function camelCase(str: string): string {
 	return str
 		.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
 			return index === 0 ? word.toLowerCase() : word.toUpperCase();

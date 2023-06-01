@@ -3,6 +3,10 @@ import { pressKey } from '../support/actions';
 import { KeyboardActions } from '../support/enums';
 import { waitUntilPageLoads } from '../support/waiters';
 import { ChainablePromiseElement } from 'webdriverio/build/types';
+import { BasePage } from '../pages/base.page';
+
+// make sure basePage is only used here, in common steps
+const basePage = new BasePage();
 
 When(
 	/^the user presses the "(.*)" key$/,
@@ -21,7 +25,7 @@ Then(
 	async function (pageName: string, notOpened: string | null) {
 		const selectors: Record<string, string | undefined> = {
 			shop: '.inventory_list',
-			cart: undefined,
+			cart: '#cart_contents_container',
 		};
 
 		if (!selectors[pageName]) {
@@ -41,3 +45,7 @@ Then(
 			: await expect(pageElem).toBeDisplayed();
 	}
 );
+
+Then(/^an error is displayed$/, async function () {
+	await expect(basePage.errorMessage).toBeDisplayed();
+});
