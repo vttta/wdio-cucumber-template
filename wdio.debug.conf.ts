@@ -1,13 +1,13 @@
 import { config } from './wdio.shared.conf';
 
-config.maxInstances = 4;
+// config.maxInstances = 1;
 config.capabilities = [
 	{
 		browserName: 'chrome',
 		acceptInsecureCerts: true,
 		'goog:chromeOptions': {
 			args: [
-				'headless',
+				// 'headless',
 				'disable-popup-blocking',
 				'window-size=1366,768',
 				'disable-notifications',

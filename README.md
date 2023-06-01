@@ -10,8 +10,8 @@ This e2e testing framework is built using:
 
 ## Setup
 
-1. Make sure you have [Node.js](https://nodejs.org/) and
-   [npm](https://www.npmjs.com/) installed on your local machine
+1. Make sure you have [Node.js](https://nodejs.org/) (v18.16.0 or latest LTS) and
+   [npm](https://www.npmjs.com/) (v9.5.1 or later) installed on your local machine.
 2. Clone this repository to your machine
 3. Run `npm install` from the root to install the required dependencies
    - You may encounter issues with `package.lock` if your node version is different from other team members
@@ -21,16 +21,13 @@ This e2e testing framework is built using:
 
 To run current tests:
 
-<!-- TODO -->
-
-1. Run `npm run wdio:shop:web` (or run this script from the `apps/e2e/package.json` file using your IDE runner)
+1. Run `npm run wdio:web` (or run this script from the `package.json` file using your IDE runner)
 
 What to expect:
 
 - All tests will be executed in parallel in headless mode
-<!-- TODO -->
-- Tests will be executed at `https://staging-shop-next.obeta.io/`
-- After the execution, the test results will be generated. Open `apps/e2e/.tmp/report/index.html` in your browser to see them
+- Tests will be executed at the url defined as the `BASE_URL` at `env.ts`
+- After the execution, the test results will be generated. Open `.tmp/report/index.html` in your browser to see them
 
 ## Writing Tests
 
@@ -53,7 +50,7 @@ To add new tests:
 
 - Add the `@wip` ("work in progress") tag to exclude new tests from the test execution
   - Remove the `@wip` tag as soon as the test is implemented
-- Add `@stable`, `@failing` of `@flaky` tags based on test results, for better visibility and quick regression runs
+- Add `@stable`, `@failing` or `@flaky` tags based on test results, for better visibility and quick regression runs
 - Use a `@debug` tag to select tests for debugging ([see below](#debugging-tests))
   - Don't forget to remove all the `@debug` tags before commiting
 - Add a unique tag to the whole feature (e.g. `@search` for a search feature)
@@ -79,25 +76,30 @@ To run tests with specific tags, you can:
 
 - Add the `--cucumberOpts.tagExpression '[expression]'` option to a wdio script
   - The use of tags will be overwritten by the value you provided to the script
-  - See `wdio:shop:web-smoke` script implementation at `package.json`
+  - See `wdio:web-debug` script implementation at `package.json`
 
 ## Debugging Tests
 
 See also: [Running the tests](#running-the-tests)
 
-The debug execution uses the latest version of the `shop` app that you need to serve locally, so is can be useful not only for debugging tests, but also for adding new selectors to the code of the app itself
-
-To debug the tests:
-
-<!-- TODO -->
-
-1. Run `npx nx serve shop`
-2. Add a `@debug` tag to the desired test(s). Only marked tests will be executed
-3. If you need to stop test execution between particular steps, add `And DEBUG` step between them
-4. Run the `wdio:shop:web-debug` script
+1. Add a `@debug` tag to the desired test(s). Only marked tests will be executed
+2. If you need to stop test execution between particular steps, add `And DEBUG` step between them
+3. Run the `wdio:web-debug` script
 
 What to expect:
 
 - The selected tests will be executed one-by one and the test browser will be opened
 - If you defined a debug point, the execution will be stopped at the `DEBUG` step. You can open Chrome DevTools in the test browser and investigate the app. To exit the debug mode, follow the instructions in your terminal
 - The test results will be generated to the same file as after a usual run
+
+# VSCode reference
+
+- [How to toggle Auto Save in VS Code](https://www.kindacode.com/article/how-to-toggle-auto-save-in-vs-code/): Enable auto-save feature and always run the latest state of your tests.
+- [How to Format Code on Save in VS Code with ESlint](https://www.aleksandrhovhannisyan.com/blog/format-code-on-save-vs-code-eslint/): Understand how to use VS Code's auto-formatting capabilities to keep your code clean and consistent.
+- [Run NPM scripts in Visual Studio Code with a Single Click](http://www.matthiassommer.it/programming/testing/run-npm-scripts-in-visual-studio-code-with-a-click-of-a-button/): Discover how to run NPM scripts directly from VS Code's interface, making your workflow more efficient.
+
+- Speed up your workflow by becoming a master of keyboard shortcuts:
+
+  - [Keyboard shortcuts for Windows](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
+  - [Keyboard shortcuts for macOS](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
+  - [Keyboard shortcuts for Linux](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
