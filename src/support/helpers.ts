@@ -36,7 +36,9 @@ export function createArrayOfRepeatedElements<T>(elem: T, count: number): T[] {
 	return data;
 }
 
-export async function clearTextByBackspace(elem: WebdriverIO.Element) {
+export async function clearTextByBackspace(
+	elem: WebdriverIO.Element
+): Promise<void> {
 	const count: number = (await elem.getValue()).length;
 	await elem.waitForClickable();
 	await elem.click();
@@ -46,7 +48,10 @@ export async function clearTextByBackspace(elem: WebdriverIO.Element) {
 	}
 }
 
-export async function typeText(input: WebdriverIO.Element, value: string) {
+export async function typeText(
+	input: WebdriverIO.Element,
+	value: string
+): Promise<void> {
 	await input.click();
 	const arrValue = [...value];
 	for (let i = 0; i < arrValue.length; i++) {
