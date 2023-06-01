@@ -12,7 +12,7 @@ This e2e testing framework is built using:
 
 1. Make sure you have [Node.js](https://nodejs.org/) (v18.16.0 or latest LTS) and
    [npm](https://www.npmjs.com/) (v9.5.1 or later) installed on your local machine.
-2. Clone this repository to your machine
+2. Clone this repository to your machine by SSH. [How to generate an SSH key?](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 3. Run `npm install` from the root to install the required dependencies
    - You may encounter issues with `package.lock` if your node version is different from other team members
 4. Add a Cucumber extension to your IDE, e.g. [Cucumber (Gherkin) Full Support](https://marketplace.visualstudio.com/items?itemName=alexkrechik.cucumberautocomplete) for VS Code
@@ -83,7 +83,7 @@ To run tests with specific tags, you can:
 See also: [Running the tests](#running-the-tests)
 
 1. Add a `@debug` tag to the desired test(s). Only marked tests will be executed
-2. If you need to stop test execution between particular steps, add `And DEBUG` step between them
+2. If you need to stop test execution between particular steps, add `And DEBUG` step between them in a `.feature` file
 3. Run the `wdio:web-debug` script
 
 What to expect:
