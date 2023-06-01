@@ -6,7 +6,7 @@ export async function expectElemArrayIsGreaterOrEqual(
 }
 
 export async function expectArrayHasNoDuplicates<T>(arr: T[]): Promise<void> {
-	expect(new Set(arr).size).toEqual(arr.length);
+	await expect(new Set(arr).size).toEqual(arr.length);
 }
 
 export async function expectElementToHaveText(
