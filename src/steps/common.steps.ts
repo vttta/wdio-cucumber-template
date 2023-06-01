@@ -25,7 +25,7 @@ Then(
 	async function (pageName: string, notOpened: string | null) {
 		const selectors: Record<string, string | undefined> = {
 			shop: '.inventory_list',
-			cart: undefined,
+			cart: '#cart_contents_container',
 		};
 
 		if (!selectors[pageName]) {
