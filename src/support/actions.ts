@@ -12,7 +12,6 @@ export async function clickWithJS(elem: WebdriverIO.Element) {
 	}, elem);
 }
 
-// TODO add type for elem
 export async function clickWithEvent(elem) {
 	await browser.execute((el) => {
 		el.dispatchEvent(
